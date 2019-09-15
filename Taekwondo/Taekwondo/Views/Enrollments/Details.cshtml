@@ -1,0 +1,43 @@
+﻿@model Taekwondo.Models.Enrollment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> View Details</h2>
+
+<div>
+    <h4>Enrollment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Date Enrolled")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEnrolled)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Class ID")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Class.ClassID)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Student ID")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.StudentID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  /*id = (Model.StudentID,Model.ClassID)*/ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

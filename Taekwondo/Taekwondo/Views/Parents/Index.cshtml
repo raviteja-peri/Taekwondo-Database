@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Taekwondo.Models.Parent>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Parent Details</h2>
+
+
+<table class="table table-dark">
+    <tr>
+        <th>
+            @Html.DisplayName("Student ID")
+        </th>
+        <th>
+            @Html.DisplayName("Student Name")
+        </th>
+        <th>
+            @Html.DisplayName("Parent Type")
+        </th>
+        <th>
+            @Html.DisplayName("Parent Name")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayName("Is Student")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Student.FirstName) @Html.DisplayFor(modelItem => item.Student.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ParentType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FName) @Html.DisplayFor(modelItem => item.LName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsStudent)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ParentD },htmlAttributes : new { @class="btn" }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ParentD },htmlAttributes : new { @class="btn" }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ParentD },htmlAttributes : new { @class="btn" })
+    </td>
+</tr>
+}
+
+</table>

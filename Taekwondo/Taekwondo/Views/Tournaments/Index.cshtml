@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Taekwondo.Models.Tournament>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tournament Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create","",new { @class = "btn" })
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by Color : @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input class="btn" type="submit" value="Search" />
+    </p>
+}
+<table class="table table-dark">
+    <tr>
+        <th>
+            @Html.DisplayName("Student ID")
+        </th>
+        <th>
+            @Html.DisplayName("Student Name")
+        </th>
+        <th>
+            @Html.DisplayName("Belt Color")
+        </th>
+        <th>
+            @Html.DisplayName("Tournament Date")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.StudentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName) @Html.DisplayFor(modelItem => item.Student.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rank.BeltColor)
+            </td>
+            <td>
+                @item.TournamentDate.Value.ToString("MM/dd/yy")
+            </td>
+        </tr>
+    }
+
+</table>

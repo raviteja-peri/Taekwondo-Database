@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Taekwondo Database Project.dbo.Attendance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="Student ID" />
+      <PropertyRef Name="Class ID" />
+    </Key>
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Student ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Class ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="Class ID" />
+    </Key>
+    <Property Name="Class ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Class Start Time" Type="int" Nullable="false" />
+    <Property Name="Class End Time" Type="int" Nullable="false" />
+    <Property Name="Day of the Class" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Taekwondo Database Project.dbo.Enrolls in' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Enrolls in">
+    <Key>
+      <PropertyRef Name="Student ID" />
+      <PropertyRef Name="Class ID" />
+      <PropertyRef Name="Date Enrolled" />
+    </Key>
+    <Property Name="Student ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Class ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date Enrolled" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="Product ID" />
+    </Key>
+    <Property Name="Product ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Product Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Selling Price" Type="float" Nullable="false" />
+    <Property Name="Cost Price" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="Parent ID" />
+    </Key>
+    <Property Name="Parent ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Parent Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Father Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mother Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone num" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Street Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Student ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Reference ID" />
+    </Key>
+    <Property Name="Reference ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Payment Purpose" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Amount Paid" Type="float" Nullable="false" />
+    <Property Name="Date of Payment" Type="date" Nullable="false" />
+    <Property Name="Student ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rank">
+    <Key>
+      <PropertyRef Name="Rank ID" />
+    </Key>
+    <Property Name="Rank ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Belt Color" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date Awarded" Type="date" Nullable="false" />
+    <Property Name="Student ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Class ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Student ID" />
+    </Key>
+    <Property Name="Student ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="First Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Last Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date of Birth" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date of Joining" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mobile Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Living with Parent" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Rank" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Taekwondo Database Project.dbo.Tournament' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Tournament">
+    <Key>
+      <PropertyRef Name="Student ID" />
+      <PropertyRef Name="Rank ID" />
+      <PropertyRef Name="Date of Tournament" />
+      <PropertyRef Name="Location of Tournamnet" />
+    </Key>
+    <Property Name="Student ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Rank ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date of Tournament" Type="date" Nullable="false" />
+    <Property Name="Location of Tournamnet" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Attendance_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Class ID" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="Class ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attendance_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Student ID" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="Student ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrolls in_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Enrolls in" Type="Self.Enrolls in" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Class ID" />
+      </Principal>
+      <Dependent Role="Enrolls in">
+        <PropertyRef Name="Class ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrolls in_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Enrolls in" Type="Self.Enrolls in" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Student ID" />
+      </Principal>
+      <Dependent Role="Enrolls in">
+        <PropertyRef Name="Student ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+    <End Role="Inventory1" Type="Self.Inventory" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="Product ID" />
+      </Principal>
+      <Dependent Role="Inventory1">
+        <PropertyRef Name="Product ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Parent_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Student ID" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="Student ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Student ID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="Student ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rank_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Rank" Type="Self.Rank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Class ID" />
+      </Principal>
+      <Dependent Role="Rank">
+        <PropertyRef Name="Class ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rank_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Rank" Type="Self.Rank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Student ID" />
+      </Principal>
+      <Dependent Role="Rank">
+        <PropertyRef Name="Student ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tournament_Rank">
+    <End Role="Rank" Type="Self.Rank" Multiplicity="1" />
+    <End Role="Tournament" Type="Self.Tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rank">
+        <PropertyRef Name="Rank ID" />
+      </Principal>
+      <Dependent Role="Tournament">
+        <PropertyRef Name="Rank ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tournament_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Tournament" Type="Self.Tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Student ID" />
+      </Principal>
+      <Dependent Role="Tournament">
+        <PropertyRef Name="Student ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rank" EntityType="Self.Rank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Attendance" EntityType="Self.Attendance" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Attendance].[Date] AS [Date], 
+    [Attendance].[Status] AS [Status], 
+    [Attendance].[Student ID] AS [Student ID], 
+    [Attendance].[Class ID] AS [Class ID]
+    FROM [dbo].[Attendance] AS [Attendance]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Enrolls in" EntityType="Self.Enrolls in" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Enrolls in].[Student ID] AS [Student ID], 
+    [Enrolls in].[Class ID] AS [Class ID], 
+    [Enrolls in].[Date Enrolled] AS [Date Enrolled]
+    FROM [dbo].[Enrolls in] AS [Enrolls in]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Tournament" EntityType="Self.Tournament" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Tournament].[Student ID] AS [Student ID], 
+    [Tournament].[Rank ID] AS [Rank ID], 
+    [Tournament].[Date of Tournament] AS [Date of Tournament], 
+    [Tournament].[Location of Tournamnet] AS [Location of Tournamnet]
+    FROM [dbo].[Tournament] AS [Tournament]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Attendance_Class" Association="Self.FK_Attendance_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Attendance" EntitySet="Attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attendance_Student" Association="Self.FK_Attendance_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Attendance" EntitySet="Attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrolls in_Class" Association="Self.FK_Enrolls in_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Enrolls in" EntitySet="Enrolls in" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrolls in_Student" Association="Self.FK_Enrolls in_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Enrolls in" EntitySet="Enrolls in" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Inventory" Association="Self.FK_Inventory_Inventory">
+      <End Role="Inventory" EntitySet="Inventory" />
+      <End Role="Inventory1" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Parent_Student" Association="Self.FK_Parent_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Parent" EntitySet="Parent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Student" Association="Self.FK_Payment_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rank_Class" Association="Self.FK_Rank_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Rank" EntitySet="Rank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rank_Student" Association="Self.FK_Rank_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Rank" EntitySet="Rank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tournament_Rank" Association="Self.FK_Tournament_Rank">
+      <End Role="Rank" EntitySet="Rank" />
+      <End Role="Tournament" EntitySet="Tournament" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tournament_Student" Association="Self.FK_Tournament_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Tournament" EntitySet="Tournament" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

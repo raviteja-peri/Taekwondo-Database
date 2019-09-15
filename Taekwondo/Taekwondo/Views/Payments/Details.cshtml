@@ -1,0 +1,56 @@
+﻿    @model Taekwondo.Models.Payment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h4>Payment Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Payment Date")
+        </dt>
+
+        <dd>
+           @Model.PaymentDate.Value.ToString("MM/dd/yy")
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Class ID")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Class.ClassID)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Product Type")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductType)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Student Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.FirstName) @Html.DisplayFor(model => model.Student.LastName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReferenceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

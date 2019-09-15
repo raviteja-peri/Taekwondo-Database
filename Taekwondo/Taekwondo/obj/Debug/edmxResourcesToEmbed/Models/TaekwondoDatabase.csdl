@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="StudentID" />
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="ClassID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK_Attendance_Class" FromRole="Attendance" ToRole="Class" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Attendance_Student" FromRole="Attendance" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassStartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ClassEndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Attendances" Relationship="Self.FK_Attendance_Class" FromRole="Class" ToRole="Attendance" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__ClassID__60A75C0F" FromRole="Class" ToRole="Payment" />
+    <NavigationProperty Name="Tournaments" Relationship="Self.FK__Tournamen__Class__656C112C" FromRole="Class" ToRole="Tournament" />
+    <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_Class" FromRole="Class" ToRole="Enrollments" />
+  </EntityType>
+  <EntityType Name="Enrollment">
+    <Key>
+      <PropertyRef Name="StudentID" />
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="ClassID" Type="Int32" Nullable="false" />
+    <Property Name="DateEnrolled" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Class" Relationship="Self.FK_Enrollments_Class" FromRole="Enrollments" ToRole="Class" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Enrollments_Student" FromRole="Enrollments" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="ParentD" />
+    </Key>
+    <Property Name="ParentD" Type="Int32" Nullable="false" />
+    <Property Name="ParentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="IsStudent" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Parent_Student" FromRole="Parent" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="ReferenceID" />
+    </Key>
+    <Property Name="ReferenceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Double" Nullable="false" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ClassID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK__Payment__ClassID__60A75C0F" FromRole="Payment" ToRole="Class" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Payment__Product__68487DD7" FromRole="Payment" ToRole="Product" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__Payment__Student__619B8048" FromRole="Payment" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SellingPrice" Type="Double" Nullable="false" />
+    <Property Name="CostPrice" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__Product__68487DD7" FromRole="Product" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="Rank">
+    <Key>
+      <PropertyRef Name="RankID" />
+    </Key>
+    <Property Name="RankID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BeltColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_Rank" FromRole="Rank" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateofBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateofJoining" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LivingwithParent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RankID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Attendances" Relationship="Self.FK_Attendance_Student" FromRole="Student" ToRole="Attendance" />
+    <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_Student" FromRole="Student" ToRole="Enrollments" />
+    <NavigationProperty Name="Parents" Relationship="Self.FK_Parent_Student" FromRole="Student" ToRole="Parent" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__Student__619B8048" FromRole="Student" ToRole="Payment" />
+    <NavigationProperty Name="Rank" Relationship="Self.FK_Student_Rank" FromRole="Student" ToRole="Rank" />
+    <NavigationProperty Name="Tournaments" Relationship="Self.FK__Tournamen__Stude__6477ECF3" FromRole="Student" ToRole="Tournament" />
+  </EntityType>
+  <EntityType Name="Tournament">
+    <Key>
+      <PropertyRef Name="StudentID" />
+      <PropertyRef Name="RankID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="RankID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TournamentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClassID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK__Tournamen__Class__656C112C" FromRole="Tournament" ToRole="Class" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__Tournamen__Stude__6477ECF3" FromRole="Tournament" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="FName" />
+      <PropertyRef Name="LName" />
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="Password" />
+    </Key>
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Attendance_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attendance_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment__ClassID__60A75C0F">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tournamen__Class__656C112C">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Tournament" Type="Self.Tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Tournament">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrollments_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Enrollments">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrollments_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Enrollments">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Parent_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment__Product__68487DD7">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment__Student__619B8048">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Rank">
+    <End Role="Rank" Type="Self.Rank" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rank">
+        <PropertyRef Name="RankID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="RankID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tournamen__Stude__6477ECF3">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Tournament" Type="Self.Tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Tournament">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Taekwondo_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Attendances" EntityType="Self.Attendance" />
+    <EntitySet Name="Classes" EntityType="Self.Class" />
+    <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
+    <EntitySet Name="Parents" EntityType="Self.Parent" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Ranks" EntityType="Self.Rank" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Tournaments" EntityType="Self.Tournament" />
+    <EntitySet Name="Instructors" EntityType="Self.Instructor" />
+    <AssociationSet Name="FK_Attendance_Class" Association="Self.FK_Attendance_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Attendance" EntitySet="Attendances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attendance_Student" Association="Self.FK_Attendance_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Attendance" EntitySet="Attendances" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment__ClassID__60A75C0F" Association="Self.FK__Payment__ClassID__60A75C0F">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tournamen__Class__656C112C" Association="Self.FK__Tournamen__Class__656C112C">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Tournament" EntitySet="Tournaments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrollments_Class" Association="Self.FK_Enrollments_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Enrollments" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrollments_Student" Association="Self.FK_Enrollments_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Enrollments" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Parent_Student" Association="Self.FK_Parent_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Parent" EntitySet="Parents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment__Product__68487DD7" Association="Self.FK__Payment__Product__68487DD7">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment__Student__619B8048" Association="Self.FK__Payment__Student__619B8048">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Rank" Association="Self.FK_Student_Rank">
+      <End Role="Rank" EntitySet="Ranks" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tournamen__Stude__6477ECF3" Association="Self.FK__Tournamen__Stude__6477ECF3">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Tournament" EntitySet="Tournaments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

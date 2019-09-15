@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+ 
+}
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    .mySlides {
+        display: none;
+    }
+</style>
+<br />
+
+    <div class="w3-content w3-display-container">
+
+        <div class="w3-display-container mySlides">
+            <img src="~/images/imagee.jpg" style="width:100%">
+        </div>
+
+        <div class="w3-display-container mySlides">
+            <img src="~/images/image4.jpg" style="width:100%">
+
+        </div>
+
+        <div class="w3-display-container mySlides">
+            <img src="~/images/image5.jpg" style="width:100%">
+
+        </div>
+
+
+        <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
+    </div>
+    <br />
+    <div>
+        <p class="lead">                Masters Taekwondo Academy Windsor - 25 Amy Croft Dr, Tecumseh, Ontario N9K 1C7</p>
+    </div>
+
+
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+    </script>
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    </script>
+
+

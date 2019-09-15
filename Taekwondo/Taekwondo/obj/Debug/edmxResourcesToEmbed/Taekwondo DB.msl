@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Taekwondo_Database_ProjectEntities">
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="Model.Class">
+        <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="Class_ID" ColumnName="Class ID" />
+          <ScalarProperty Name="Class_Start_Time" ColumnName="Class Start Time" />
+          <ScalarProperty Name="Class_End_Time" ColumnName="Class End Time" />
+          <ScalarProperty Name="Day_of_the_Class" ColumnName="Day of the Class" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventories">
+      <EntityTypeMapping TypeName="Model.Inventory">
+        <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="Product_ID" ColumnName="Product ID" />
+          <ScalarProperty Name="Product_Type" ColumnName="Product Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Selling_Price" ColumnName="Selling Price" />
+          <ScalarProperty Name="Cost_Price" ColumnName="Cost Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parents">
+      <EntityTypeMapping TypeName="Model.Parent">
+        <MappingFragment StoreEntitySet="Parent">
+          <ScalarProperty Name="Parent_ID" ColumnName="Parent ID" />
+          <ScalarProperty Name="Parent_Type" ColumnName="Parent Type" />
+          <ScalarProperty Name="Father_Name" ColumnName="Father Name" />
+          <ScalarProperty Name="Mother_Name" ColumnName="Mother Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone_num" ColumnName="Phone num" />
+          <ScalarProperty Name="Street_Address" ColumnName="Street Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="Student_ID" ColumnName="Student ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="Model.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="Reference_ID" ColumnName="Reference ID" />
+          <ScalarProperty Name="Payment_Purpose" ColumnName="Payment Purpose" />
+          <ScalarProperty Name="Amount_Paid" ColumnName="Amount Paid" />
+          <ScalarProperty Name="Date_of_Payment" ColumnName="Date of Payment" />
+          <ScalarProperty Name="Student_ID" ColumnName="Student ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ranks">
+      <EntityTypeMapping TypeName="Model.Rank">
+        <MappingFragment StoreEntitySet="Rank">
+          <ScalarProperty Name="Rank_ID" ColumnName="Rank ID" />
+          <ScalarProperty Name="Belt_Color" ColumnName="Belt Color" />
+          <ScalarProperty Name="Date_Awarded" ColumnName="Date Awarded" />
+          <ScalarProperty Name="Student_ID" ColumnName="Student ID" />
+          <ScalarProperty Name="Class_ID" ColumnName="Class ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="Model.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Student_ID" ColumnName="Student ID" />
+          <ScalarProperty Name="First_Name" ColumnName="First Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+          <ScalarProperty Name="Date_of_Birth" ColumnName="Date of Birth" />
+          <ScalarProperty Name="Date_of_Joining" ColumnName="Date of Joining" />
+          <ScalarProperty Name="Mobile_Number" ColumnName="Mobile Number" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Living_with_Parent" ColumnName="Living with Parent" />
+          <ScalarProperty Name="Rank" ColumnName="Rank" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attendances">
+      <EntityTypeMapping TypeName="Model.Attendance">
+        <MappingFragment StoreEntitySet="Attendance">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Student_ID" ColumnName="Student ID" />
+          <ScalarProperty Name="Class_ID" ColumnName="Class ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enrolls_ins">
+      <EntityTypeMapping TypeName="Model.Enrolls_in">
+        <MappingFragment StoreEntitySet="Enrolls in">
+          <ScalarProperty Name="Student_ID" ColumnName="Student ID" />
+          <ScalarProperty Name="Class_ID" ColumnName="Class ID" />
+          <ScalarProperty Name="Date_Enrolled" ColumnName="Date Enrolled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tournaments">
+      <EntityTypeMapping TypeName="Model.Tournament">
+        <MappingFragment StoreEntitySet="Tournament">
+          <ScalarProperty Name="Student_ID" ColumnName="Student ID" />
+          <ScalarProperty Name="Rank_ID" ColumnName="Rank ID" />
+          <ScalarProperty Name="Date_of_Tournament" ColumnName="Date of Tournament" />
+          <ScalarProperty Name="Location_of_Tournamnet" ColumnName="Location of Tournamnet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

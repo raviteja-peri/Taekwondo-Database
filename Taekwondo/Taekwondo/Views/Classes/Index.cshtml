@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Taekwondo.Models.Class>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Class Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "", htmlAttributes: new { @class="btn"})
+</p>
+<table class="table table-dark">
+    <tr>
+        <th>
+            @Html.DisplayName("Start Time")
+        </th>
+        <th>
+            @Html.DisplayName("End Time")
+        </th>
+        <th>
+            @Html.DisplayName("Day")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           @item.ClassStartTime.ToString("hh:mm tt")
+        </td>
+        <td>
+            @item.ClassEndTime.ToString("hh:mm tt")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Day)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ClassID },htmlAttributes:new { @class="btn" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ClassID },htmlAttributes:new { @class="btn" }) |
+        </td>
+    </tr>
+}
+
+</table>

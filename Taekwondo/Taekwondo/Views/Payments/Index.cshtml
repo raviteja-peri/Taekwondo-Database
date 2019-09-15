@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Taekwondo.Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Payment Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "", htmlAttributes: new { @class = "btn" })
+</p>
+@using (Html.BeginForm())
+{
+<p>
+    From Date:<input type="date" name="searchFromDate" id="datepicker" />
+    To Date:<input type="date" name="searchToDate" id="datepicker" />
+    <input class="btn" type="submit" value="Search" />
+</p>
+}
+
+<table class="table table-dark">
+    <tr>
+        <th>
+            @Html.DisplayName("Student ID")
+        <th>
+            @Html.DisplayName("Student Name")
+        </th>
+        <th>
+            @Html.DisplayName("Class ID")
+        </th>
+        <th>
+            @Html.DisplayName("Product Type")
+        </th>
+        <th>
+            @Html.DisplayName("Amount")
+        </th>
+        <th>
+            @Html.DisplayName("Payment Date")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName) @Html.DisplayFor(modelItem => item.Student.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class.ClassID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductType)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @item.PaymentDate.Value.ToString("MM/dd/yy")
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ReferenceID }, htmlAttributes: new { @class = "btn" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ReferenceID }, htmlAttributes: new { @class = "btn" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ReferenceID }, htmlAttributes: new { @class = "btn" })
+            </td>
+        </tr>
+    }
+
+</table>

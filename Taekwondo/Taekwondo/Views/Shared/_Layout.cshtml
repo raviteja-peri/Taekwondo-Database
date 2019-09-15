@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+    <script>
+        $('#timepicker').timepicker({
+            timeFormat: 'h:mm p',
+            interval: 60,
+            minTime: '10',
+            maxTime: '9:00pm',
+            defaultTime: '10',
+            startTime: '10:00',
+            dynamic: true,
+            dropdown: true,
+            scrollbar: true
+        });
+
+    </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <nav class="navbar">
+                <a class="navbar-brand" href="/Home/Index">Taekwondo</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Students/Index">Students <span class="sr-only">(current)</span></a>
+                        </li>
+                      `
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Parents/Index">Parents </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Classes/Index">Classes</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/Attendances/Index">Attendance Records</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Products/Index">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Enrollments/Index">Enrollments</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/Payments/Index">Payments</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/Tournaments/Index">Tournaments</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/Account/Login">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - TAEKWONDO</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

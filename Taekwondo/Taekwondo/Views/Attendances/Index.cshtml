@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Taekwondo.Models.Attendance>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Attendace Records</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "", htmlAttributes: new { @class = "btn" })
+</p>
+@using (Html.BeginForm())
+{
+<p>
+    Find by ID : @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    Date:<input type="date" name="searchDate" id="datepicker" />
+    <input class="btn" type="submit" value="Search" />
+</p>
+}
+<table class="table table-dark">
+    <tr>
+        <th>
+            @Html.DisplayName("Student ID")
+        </th>
+        <th>
+            @Html.DisplayName("Student Name")
+        </th>
+        <th>
+            @Html.DisplayName("Class ID")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.StudentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName) @Html.DisplayFor(modelItem => item.Student.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class.ClassID)-@Html.DisplayFor(modelItem => item.Class.Day)
+            </td>
+            <td>
+                @item.Date.ToString("MM/dd/yy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        </tr>
+    }
+
+</table>

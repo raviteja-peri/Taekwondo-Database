@@ -1,0 +1,132 @@
+﻿@model Taekwondo.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <br />
+        <h2>
+            @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)
+        </h2>
+        <p>
+            <strong>@Html.DisplayName("Mobile:")</strong>
+            @Html.DisplayFor(model => model.MobileNumber)
+        </p>
+
+        <p>
+            <strong> @Html.DisplayName("Email:")</strong>
+            @Html.DisplayFor(model => model.Email)
+        </p>
+        @Html.DisplayFor(model => model.Street), @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.ZipCode)
+        <br></br>
+        <h4>Parent Details</h4>
+        <table class="table table-dark">
+            <tr>
+                <th>Parent Type</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Street</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                <th> Is Student</th>
+            </tr>
+            @foreach(var item in Model.Parents)
+            {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ParentType)</td>
+            <td>@Html.DisplayFor(modelItem => item.FName) @Html.DisplayFor(modelItem => item.LName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+            <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+            <td>@Html.DisplayFor(modelItem => item.Street)</td>
+            <td>@Html.DisplayFor(modelItem => item.City)</td>
+            <td>@Html.DisplayFor(modelItem => item.ZipCode)</td>
+            <td>@Html.DisplayFor(modelItem => item.IsStudent)</td>
+
+        </tr>
+            }
+        </table>
+        <h4>Rank History</h4>
+        <table class="table table-dark">
+            <tr>
+                <th>Belt Color</th>
+                <th>Tournament Date</th>
+            </tr>
+            @foreach (var item in Model.Tournaments)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modalItem => item.Rank.BeltColor)</td>
+                    <td>@item.TournamentDate.Value.ToString("MM/dd/yy")</td>
+                </tr>
+
+
+            }
+        </table>
+        <h4>Class Details</h4>
+        <table class="table table-dark">
+            <tr>
+                <th>Class ID</th>
+                <th>Day</th>
+                <th>Timings</th>
+            </tr>
+            @foreach (var item in Model.Enrollments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modalItem => item.ClassID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modalItem => item.Class.Day)
+                    </td>
+                    <td>
+                        @item.Class.ClassStartTime.ToString("hh:mm tt") to @item.Class.ClassEndTime.ToString("hh:mm tt")
+                    </td>
+
+                </tr>
+            }
+        </table>
+        <h4>Payment History</h4>
+        <table class="table table-dark">
+            <tr>
+                <th>Payment ID</th>
+                <th>Product Type</th>
+                <th>Payment Date</th>
+                <th>Amount</th>
+            </tr>
+           @foreach(var item in Model.Payments)
+           {
+               <tr>
+                   <td>@Html.DisplayFor(modalItem  => item.ReferenceID)</td>
+                   <td>@Html.DisplayFor(modalItem => item.Product.ProductType)</td>
+                   <td>@item.PaymentDate.Value.ToString("MM/dd/yy")</td>
+                   <td>$@Html.DisplayFor(modalItem => item.Amount)</td>
+               </tr>
+           }
+        </table>
+        <h4>Attendace Records</h4>
+        <table class="table table-dark">
+            <tr>
+                <th>Class ID</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            @foreach (var item in Model.Attendances)
+            {
+            <tr>
+                <td>@Html.DisplayFor(modalItem => item.ClassID)</td>
+                <td>@item.Date.ToString("MM/dd/yy")</td>
+                <td>@Html.DisplayFor(modalItem  => item.Status)</td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+    
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.StudentID },htmlAttributes: new { @class = "btn" }) |
+        @Html.ActionLink("Back to List", "Index",new {/* */},htmlAttributes:new { @class="btn"} )
+    </p>

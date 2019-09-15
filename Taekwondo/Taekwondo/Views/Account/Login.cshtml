@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+
+<h1>
+    <span>I</span>nstructor
+    <span>L</span>ogin
+</h1>
+<!-- //title -->
+<!-- content -->
+<div class="sub-main-w3">
+    <form class="login" action="Verify" method="post">
+        <p class="legend">Login Here<span class="fa fa-hand-o-down"></span></p>
+        <div class="input">
+            <input type="text" placeholder="Username" name="Name" required="" />
+            <span class="fa fa-envelope"></span>
+        </div>
+        <div class="input">
+            <input type="password" placeholder="Password" name="password" required="" />
+            <span class="fa fa-unlock"></span>
+        </div>
+        <button type="submit" class="submit">
+            <span class="fa fa-sign-in"></span>
+        </button>
+    </form>
+</div>
+<!-- //content -->
+<!-- copyright -->
+<div class="footer">
+    <h2>
+        &copy; 2019 Taekwondo. All rights reserved | Design by
+        <a href="http://w3layouts.com">Keerthi Pavan Ravi</a>
+    </h2>
+</div>
+<!-- //copyright -->
